@@ -4,10 +4,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class basicLocatorsTests {
@@ -126,6 +128,43 @@ public class basicLocatorsTests {
         driver.close();
 
     }
+
+
+
+
+
+
+    @Test
+    public void testingWorkingWithMultipleElements() throws InterruptedException{
+        WebDriverManager.chromedriver().setup();
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        driver.get("https://www.google.com/");
+        driver.findElement(By.name("q")).sendKeys("devxschool" + Keys.ENTER);
+
+        Thread.sleep(3000);
+
+        //first we will find a first link and print its text
+        WebElement firstLink = driver.findElement(By.tagName("a"));
+
+        System.out.println("This is the first link on the page: "+firstLink.getText());
+
+        System.out.println("__________________________________________");
+
+        List<WebElement> allLinksOnThePage = driver.findElements(By.tagName("a"));
+        for(WebElement link: allLinksOnThePage){
+            System.out.println(link.getText());
+        }
+
+        driver.close();
+
+
+    }
+
 
 
 
