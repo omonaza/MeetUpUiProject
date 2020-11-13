@@ -11,6 +11,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import utilities.ConfigReader;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -20,11 +23,19 @@ public class advancedLocatorsTests {
     WebDriver driver;
     @Before
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
 
+        if(ConfigReader.getProperty("browser").equals("chrome")){
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
 
+        }else if(ConfigReader.getProperty("browser").equals("firefox")){
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        }else{
+            driver = new SafariDriver();
+        }
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+
     }
 
 
