@@ -28,7 +28,7 @@ public class testWaits {
 
     @After
     public void tearDown(){
-        //driver.close();
+        driver.close();
     }
 
     @Test

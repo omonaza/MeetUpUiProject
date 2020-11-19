@@ -28,7 +28,7 @@ public class ConfigReader {
 
     //single method that we will use to read a value from a properties object
     public static String getProperty(String key){
-        return properties.getProperty(key);
+        return properties.getProperty(key).trim();
     }
 
 }

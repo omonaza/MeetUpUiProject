@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Driver;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,22 +23,20 @@ public class practiceDropdowns {
 
     @Before
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        driver = Driver.getDriver();
     }
 
     @After
     public void tearDown(){
-        driver.close();
+        Driver.closeDriver();
     }
 
 
     @Test
     public void practiceSelectElement(){
-        driver.navigate().to("https://www.devxschool.com/enrollment/");
+        Driver.getDriver().navigate().to("https://www.devxschool.com/enrollment/");
 
-        WebElement selectTag = driver.findElement(By.cssSelector("#form-field-ads"));
+        WebElement selectTag = Driver.getDriver().findElement(By.cssSelector("#form-field-ads"));
 
         Select dropdown = new Select(selectTag);
 
