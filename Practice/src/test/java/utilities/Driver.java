@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import saucelabs.SauceLabsDriver;
 
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -37,10 +38,9 @@ public class Driver {
                     driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
                     break;
                 case "saucelabs":
-                        driver = SauceLabsDriver.loadSauceLabsDriver();
+                    driver = SauceLabsDriver.loadSauceLabsDriver();
                     break;
             }
-
         }
         return driver;
 
